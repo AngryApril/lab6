@@ -16,9 +16,10 @@ public class Combinator {
 
         for(int i = 0; i < list.size(); i++){
             int j = 0;
-            if(j<list.get(i).size()-1 && list.get(i).get(j).equals(list.get(i).get(j+1))){
-                continue;
+            if(list.get(i).get(j).equals(list.get(i).get(j+1))){
+                    continue;
             }
+
             List<T> array = list.get(i);
             listRes.addAll(permute( array, size));
         }
