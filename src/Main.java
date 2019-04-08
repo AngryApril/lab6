@@ -31,7 +31,7 @@ public class Main {
         operators = Operator.getOperatorList();
 
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
-            System.out.println("Write numbers divided by space:\ne.g. : 1 2 4 6");
+            System.out.println("Write numbers [1...9] divided by space:\ne.g. : 1 2 4 6");
             input = reader.readLine();
             Converter converter = new Converter();
             arrayList = converter.convertToList(input);
