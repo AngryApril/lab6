@@ -35,6 +35,7 @@ public class Main {
             input = reader.readLine();
             Converter converter = new Converter();
             arrayList = converter.convertToList(input);
+            if (arrayList.size()<1) return;
 
             //get all combinations with repeating values, e.g. '+ + +','+ / *','- / -'
             Combinator combinator = new Combinator();

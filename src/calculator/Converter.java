@@ -1,6 +1,7 @@
 package calculator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,19 +11,25 @@ public class Converter {
 
     public List<Integer> convertToList(String input) {
 
-        List<Integer> array = new ArrayList<>();
+        List<Integer> arrayList = new ArrayList<>();
         String[] numbers = input.split(" ");
+        int tmpNum;
 
         for (int i = 0; i < numbers.length; i++) {
 
             try {
-                array.add(Integer.parseInt(numbers[i]));
+                tmpNum = Integer.parseInt(numbers[i]);
+                arrayList.add(tmpNum);
+                if(tmpNum < 1 || tmpNum > 9){
+                    throw new NumberFormatException();
+                }
             } catch (NumberFormatException nfe) {
                 System.out.println("'" + numbers[i] +"'" + " NOT A VALID NUMBER");
+                return Collections.emptyList();
             }
         }
 
-        return array;
+        return arrayList;
     }
 
     /*public int[] convertToArray(ArrayList<Integer> arrayList) {
