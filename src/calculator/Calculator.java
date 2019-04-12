@@ -1,5 +1,8 @@
 package calculator;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -11,7 +14,7 @@ public class Calculator {
 
     public static final int endValue = 24;
 
-    public void calculate(List<List<Integer>> arrayList, List<List<Operator>> operatorList) {
+    public ArrayList<Integer> calculate(List<List<Integer>> arrayList, List<List<Operator>> operatorList) {
         ArrayList<Integer> results = new ArrayList<>();
         ArrayList<String> inputs = new ArrayList<>();
         int size = arrayList.size()*operatorList.size();
@@ -49,16 +52,54 @@ public class Calculator {
             //System.out.println(inputs.get(i));
             results.add((int) tmpValue);
 
-            if(canBeEqualTo24(results.get(i))){
-                System.out.println("True\nReverse Polish notation: " + inputs.get(i) + " " + " = " + results.get(i));
-                return;
-            }
         }
-        System.out.println("False\nиз данного набора чисел невозможно составить выражение, равное " + endValue);
+
+        return results;
+
+
     }
 
     //check if result equals 24
-    public boolean canBeEqualTo24(Integer result) {
+
+    public boolean canBeEqualTo24(int[] arr){
+
+        ArrayList<Operator> operators;
+        List<Integer> arrayList;
+        List<List<Operator>> operatorCombinations = new ArrayList<>();
+        List<List<Operator>> operatorPermutations = new ArrayList<>();
+        List<List<Integer>> arrayPermutations = new ArrayList<>();
+        List<Integer> results = new ArrayList<>();
+
+        Operator.setOperatorList();
+        operators = Operator.getOperatorList();
+
+        Converter converter = new Converter();
+        arrayList = converter.convertArrayToList(arr);
+        if (arrayList.size()<1) return false;
+
+        //get all combinations with repeating values, e.g. '+ + +','+ / *','- / -'
+        Combinator combinator = new Combinator();
+
+        //arrayCombinations = combinator.combineHelp(arrayList,arrayList.size());
+        operatorCombinations = combinator.combineHelp(operators, arrayList.size()-1,true);
+
+        //get all permutations & combinations
+        arrayPermutations.addAll(Combinator.permute(arrayList,arrayList.size()));
+        operatorPermutations = combinator.permuteHelp(operatorCombinations,arrayList.size()-1);
+
+
+        //calculate if we can reach 24
+        Calculator calculator = new Calculator();
+        results = calculator.calculate(arrayPermutations,operatorPermutations);
+
+        if(results.contains(24)) return true;
+        else return false;
+
+    }
+
+
+    public boolean canBeEqualToEndResult(Integer result) {
+
         if(result.equals(endValue)){
             return true;
         }

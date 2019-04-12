@@ -32,18 +32,16 @@ public class Converter {
         return arrayList;
     }
 
-    /*public int[] convertToArray(ArrayList<Integer> arrayList) {
+    public List<Integer> convertArrayToList(int[] array) {
 
-        int[] array = new int[arrayList.size()];
-        for (int i = 0; i < arrayList.size(); i++) {
+        List<Integer> arrayList = new ArrayList<>();
 
-            try {
-                array[i] = arrayList.get(i);
-            } catch (NumberFormatException nfe) {
-                System.out.println(arrayList.get(i) + " NOT A VALID NUMBER");
-            }
+        for(int i = 0; i < array.length; i++){
+            arrayList.add(array[i]);
         }
 
-        return array;
-    }*/
+        return arrayList;
+    }
+
+
 }

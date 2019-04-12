@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static calculator.Calculator.endValue;
+
 /**
  * Created by alexey.valiev on 4/4/19.
  */
@@ -26,8 +28,20 @@ public class Main {
         //List<Integer> results = new ArrayList<>();
 
 
+        Calculator calculator = new Calculator();
+        boolean result = calculator.canBeEqualTo24(new int[]{4,1,5,6});
+
+        if(result) {
+            System.out.println("True\nиз данного набора чисел можно составить выражение, равное " + endValue);
+        }
+        else{
+            System.out.println("False\nиз данного набора чисел невозможно составить выражение, равное " + endValue);
+        }
+
+
+
         //initialize enum Operator
-        Operator.setOperatorList();
+        /*Operator.setOperatorList();
         operators = Operator.getOperatorList();
 
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
@@ -60,6 +74,7 @@ public class Main {
             System.out.println(ioe.getMessage());
         }
 
+*/
     }
 
 }
