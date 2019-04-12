@@ -12,6 +12,8 @@ import java.util.Stack;
  */
 public class Calculator {
 
+    private String explanation;
+
     public static final int endValue = 24;
 
     public ArrayList<Integer> calculate(List<List<Integer>> arrayList, List<List<Operator>> operatorList) {
@@ -50,6 +52,8 @@ public class Calculator {
         for (int i = 0; i < inputs.size(); i++){
             tmpValue = calc(inputs.get(i));
             //System.out.println(inputs.get(i));
+
+            //if(tmpValue == 24) this.setExplanation("Reverse Polish notation: " + inputs.get(i) + " = 24");
             results.add((int) tmpValue);
 
         }
@@ -58,9 +62,6 @@ public class Calculator {
 
 
     }
-
-    //check if result equals 24
-
 
     public boolean canBeEqualToEndResult(Integer result) {
 
@@ -94,5 +95,14 @@ public class Calculator {
     private static Stack<Double> calcSign(Stack<Double> numbers, Operator operator) {
         numbers.push(operator.apply(numbers.pop(), numbers.pop()));
         return numbers;
+    }
+
+    public String getExplanation() {
+        return this.explanation;
+    }
+
+    public void setExplanation(String explanation) {
+
+        this.explanation = explanation;
     }
 }

@@ -12,6 +12,8 @@ import static calculator.Calculator.endValue;
  */
 public class Main {
 
+    private static String explanation;
+
     public static void main(String[] args){
 
         String input;
@@ -23,7 +25,7 @@ public class Main {
         List<List<Integer>> arrayPermutations = new ArrayList<>();
         //List<Integer> results = new ArrayList<>();
 
-        boolean result = canBeEqualTo24(new int[]{1,1,1,7});
+        boolean result = new Main().canBeEqualTo24(new int[]{1,4,5,6});
 
         if(result) {
             System.out.println("True\nиз данного набора чисел можно составить выражение, равное " + endValue);
@@ -71,7 +73,7 @@ public class Main {
 */
     }
 
-    public static boolean canBeEqualTo24(int[] arr){
+    public boolean canBeEqualTo24(int[] arr){
 
         ArrayList<Operator> operators;
         List<Integer> arrayList;
