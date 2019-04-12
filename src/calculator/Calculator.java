@@ -61,42 +61,6 @@ public class Calculator {
 
     //check if result equals 24
 
-    public boolean canBeEqualTo24(int[] arr){
-
-        ArrayList<Operator> operators;
-        List<Integer> arrayList;
-        List<List<Operator>> operatorCombinations = new ArrayList<>();
-        List<List<Operator>> operatorPermutations = new ArrayList<>();
-        List<List<Integer>> arrayPermutations = new ArrayList<>();
-        List<Integer> results = new ArrayList<>();
-
-        Operator.setOperatorList();
-        operators = Operator.getOperatorList();
-
-        Converter converter = new Converter();
-        arrayList = converter.convertArrayToList(arr);
-        if (arrayList.size()<1) return false;
-
-        //get all combinations with repeating values, e.g. '+ + +','+ / *','- / -'
-        Combinator combinator = new Combinator();
-
-        //arrayCombinations = combinator.combineHelp(arrayList,arrayList.size());
-        operatorCombinations = combinator.combineHelp(operators, arrayList.size()-1,true);
-
-        //get all permutations & combinations
-        arrayPermutations.addAll(Combinator.permute(arrayList,arrayList.size()));
-        operatorPermutations = combinator.permuteHelp(operatorCombinations,arrayList.size()-1);
-
-
-        //calculate if we can reach 24
-        Calculator calculator = new Calculator();
-        results = calculator.calculate(arrayPermutations,operatorPermutations);
-
-        if(results.contains(24)) return true;
-        else return false;
-
-    }
-
 
     public boolean canBeEqualToEndResult(Integer result) {
 
